@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Conversor de R$ para A$ (Albinos)</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      padding: 40px;
+      text-align: center;
+    }
+    h1 {
+      color: #333;
+    }
+    input, button {
+      font-size: 18px;
+      padding: 10px;
+      margin: 10px;
+    }
+    .resultado {
+      margin-top: 20px;
+      font-size: 22px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>💸 Conversor R$ → A$ (Albinos)</h1>
+  <p>Insira o valor em Reais (R$):</p>
+  <input type="number" id="reais" placeholder="Ex: 10.00" step="0.01">
+  <br>
+  <button onclick="converter()">Converter</button>
+
+  <div class="resultado" id="resultado"></div>
+
+  <script>
+    function converter() {
+      const taxa = 5.00; // 1 A$ = 5 R$
+      const valorReais = parseFloat(document.getElementById("reais").value);
+
+      if (isNaN(valorReais)) {
+        document.getElementById("resultado").innerText = "Digite um valor válido!";
+        return;
+      }
+
+      const albinos = Math.floor(valorReais / taxa);
+      const albinocentavos = Math.round(((valorReais % taxa) / taxa) * 100);
+
+      document.getElementById("resultado").innerText =
+        `A$ ${albinos}, Ac$ ${albinocentavos.toString().padStart(2, '0')}`;
+    }
+  </script>
+</body>
+</html>
