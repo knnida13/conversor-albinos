@@ -6,12 +6,12 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #f2f2f2;
-      padding: 40px;
+      background-color: #f0f0f0;
       text-align: center;
+      padding: 50px;
     }
     h1 {
-      color: #333;
+      color: #222;
     }
     input, button {
       font-size: 18px;
@@ -20,20 +20,39 @@
     }
     .resultado {
       margin-top: 20px;
-      font-size: 22px;
+      font-size: 24px;
       font-weight: bold;
+      color: #006600;
     }
   </style>
 </head>
 <body>
-  <h1>💸 Conversor R$ → A$ (Albinos)</h1>
-  <p>Insira o valor em Reais (R$):</p>
-  <input type="number" id="reais" placeholder="Ex: 300.00" step="0.01">
+  <h1>💰 Conversor de R$ para A$ (Albinos)</h1>
+  <p>Digite o valor em reais (R$):</p>
+  <input type="number" id="reais" step="0.01" placeholder="Ex: 300.00">
   <br>
   <button onclick="converter()">Converter</button>
-
   <div class="resultado" id="resultado"></div>
 
   <script>
     function converter() {
-      const taxa = 600
+      const taxaConversao = 600; // 1 A$ = 600 R$
+      const valorReais = parseFloat(document.getElementById("reais").value);
+
+      if (isNaN(valorReais) || valorReais < 0) {
+        document.getElementById("resultado").innerText = "Digite um valor válido!";
+        return;
+      }
+
+      const valorAlbinos = valorReais / taxaConversao;
+
+      const formatado = valorAlbinos.toLocaleString("pt-BR", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+
+      document.getElementById("resultado").innerText = `A$ ${formatado}`;
+    }
+  </script>
+</body>
+</html>
